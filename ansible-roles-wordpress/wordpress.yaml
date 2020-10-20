@@ -1,0 +1,7 @@
+- name: Install WordPress
+  hosts: wordpress
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  roles:
+    - wordpress

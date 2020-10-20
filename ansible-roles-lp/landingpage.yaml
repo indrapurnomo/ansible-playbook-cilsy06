@@ -1,0 +1,7 @@
+- name: install landing page
+  hosts: landingpage
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  roles:
+  - landingpage

@@ -1,4 +1,6 @@
 - hosts: landing-page
+  vars:
+    http_port: 8081
   remote_user: ubuntu
   become: yes
   become_method: sudo
@@ -15,3 +17,13 @@
       copy:
         src: /tmp/landing-page/
         dest: /var/www/html/
+    - name: deploy konfigurasi port apache2
+      template:
+        src: /root/cilsy-ansible/ports.conf.j2
+        dest: /etc/apache2/ports.conf
+      notify: restart_apache2
+  handlers:
+    - name: restart_apache2
+      service:
+        name: apache2
+        state: restarted
